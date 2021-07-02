@@ -18,7 +18,6 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import web.config.handler.LoginSuccessHandler;
 import web.service.UserDetailsServiceImpl;
 
-@Configuration
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
@@ -36,15 +35,19 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         auth.userDetailsService(userDetailsService).passwordEncoder(encoder());
     }
 
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+        http.authorizeRequests()
+                .antMatchers("/admin/**").hasRole( "ADMIN")
+                .antMatchers("/user/**").hasAnyRole("USER", "ADMIN")
+                .antMatchers("/**").permitAll()
+                .and().formLogin();
+    }
+
     @Bean
     public BCryptPasswordEncoder encoder() {
         return new BCryptPasswordEncoder(12);
     }
-
-//    @Override
-//    protected void configure(HttpSecurity http) throws Exception {
-//        super.configure(http);
-//    }
 //
 //    @Bean
 //    @Override
