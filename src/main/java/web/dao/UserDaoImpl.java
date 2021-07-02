@@ -21,7 +21,10 @@ public class UserDaoImpl implements UserDao{
 
     @Override
     public User findByUsername (String username) {
-        return entityManager.find(User.class, username);
+        User user = entityManager.createQuery(
+                "SELECT u from User u WHERE u.name = :username", User.class).
+                setParameter("username", username).getSingleResult();
+        return user;
     }
 
     @Override
