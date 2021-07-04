@@ -33,12 +33,6 @@ public class UserController {
 		return "admin";
 	}
 
-	@GetMapping("/new")
-	public String register(Model model) {
-		model.addAttribute("user", new User());
-		return "new";
-	}
-
 	@PostMapping()
 	public String create(@ModelAttribute("user") User user) {
 		userService.saveUser(user);
