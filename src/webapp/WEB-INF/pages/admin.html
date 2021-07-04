@@ -6,44 +6,47 @@
 </head>
 <body>
 
-<h2>All Users</h2>
-<br>
-<table>
-    <tr>
-        <th>Name</th>
-        <th>Password</th>
-    </tr>
+<div align="center">
 
-
-    <div th:each="user : ${users}">
-
-
+    <h2>All Users</h2>
+    <br>
+    <table>
         <tr>
-            <a th:href="@{/{id}/user(id=${user.getId()})}" th:text="${user.getUsername()}">username</a>
-            <td th:text="${user.getUsername()}">username</td>
-            <td th:text="${user.getPassword()}">password</td>
-            <td>
-                <form th:action="@{/{id}/update(id=${user.getId()})}">
-                    <input type="submit" value="Update"/>
-                </form>
-            </td>
-            <td>
-                <form th:method="DELETE" th:action="@{/{id}(id=${user.getId()})}">
-                    <input type="submit" value="Delete"/>
-                </form>
-            </td>
-
+            <th>Name</th>
+            <th>Password</th>
         </tr>
 
-    </div>
 
-</table>
+        <div th:each="user : ${users}">
 
-<br/>
 
-<form th:action="@{/new}">
-    <input type="submit" value="Add new user"/>
-</form>
+            <tr>
+                <td th:text="${user.getUsername()}">username</td>
+                <td th:text="${user.getPassword()}">password</td>
+                <td>
+                    <form th:action="@{/{id}/update(id=${user.getId()})}">
+                        <input type="submit" value="Update"/>
+                    </form>
+                </td>
+                <td>
+                    <form th:method="DELETE" th:action="@{/{id}(id=${user.getId()})}">
+                        <input type="submit" value="Delete"/>
+                    </form>
+                </td>
+
+            </tr>
+
+        </div>
+
+    </table>
+
+    <br/>
+
+    <form th:action="@{/new}">
+        <input type="submit" value="Create new user"/>
+    </form>
+
+</div>
 
 </body>
 </html>

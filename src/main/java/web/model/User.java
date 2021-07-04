@@ -36,7 +36,7 @@ public class User implements UserDetails {
         this.id = id;
     }
 
-    public void setUsername(String name) {
+    public void setName(String name) {
         this.name = name;
     }
 

@@ -6,25 +6,23 @@
 </head>
 <body>
 
-<table>
-    <tr>
-        <th>Name</th>
-        <th>Password</th>
-    </tr>
-    <br>
-    <br>
-    <tr>
-        <td th:text="${user.getUsername()}">username</td>
-        <td th:text="${user.getPassword()}">password</td>
-    </tr>
-</table>
+<div align="center">
 
-<!--    <h4>Surname</h4>-->
-<!--    <h3 th:text="${user.getUsername()}"></h3>-->
-<!--    <br/>-->
-<!--    <br/>-->
-<!--    <h4>Password</h4>-->
-<!--    <h3 th:text="${user.getUsername()}"></h3>-->
+    <table>
+
+        <tr>
+            <th>Name</th>
+            <th>Password</th>
+        </tr>
+        <br>
+        <tr>
+            <td th:text="${user.getUsername()}">username</td>
+            <td th:text="${user.getPassword()}">password</td>
+        </tr>
+
+    </table>
+
+</div>
 
 </body>
 </html>

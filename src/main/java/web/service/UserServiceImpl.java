@@ -24,13 +24,13 @@ public class UserServiceImpl implements UserService {
 
     private final UserDao userDao;
     private final RoleDao roleDao;
-//    private final BCryptPasswordEncoder passwordEncoder;
+    private final BCryptPasswordEncoder passwordEncoder;
 
     @Autowired
-    public UserServiceImpl(UserDao userDao, RoleDao roleDao) {
+    public UserServiceImpl(UserDao userDao, RoleDao roleDao, BCryptPasswordEncoder passwordEncoder) {
         this.userDao = userDao;
         this.roleDao = roleDao;
-//        this.passwordEncoder = passwordEncoder;
+        this.passwordEncoder = passwordEncoder;
     }
 
     @Override
@@ -38,12 +38,17 @@ public class UserServiceImpl implements UserService {
         return userDao.getUser(id);
     }
 
+    @Override
+    public User findByUsername(String username) {
+        return userDao.findByUsername(username);
+    }
+
     //берём роль из БД
     //присваиваем её новому пользователю и сохраняем в БД
     //шифруем пароль при регистрации
     @Override
     public void saveUser(User user) {
-//        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
         Set<Role> roles = new HashSet<>();
         roles.add(roleDao.getRole(1L));
         user.setRoles(roles);
@@ -59,7 +64,7 @@ public class UserServiceImpl implements UserService {
     public void updateUser(Long id, User user) {
         User userToBeUpdate = userDao.getUser(id);
 
-        userToBeUpdate.setUsername(user.getUsername());
+        userToBeUpdate.setName(user.getUsername());
         userToBeUpdate.setPassword(user.getPassword());
     }
 
