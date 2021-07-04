@@ -5,17 +5,12 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import web.model.User;
 import web.service.UserService;
-import web.service.UserServiceImpl;
-
-import java.net.Authenticator;
-import java.util.ArrayList;
-import java.util.List;
 
 @Controller
+@RequestMapping("/")
 public class UserController {
 
 	private UserService userService;
@@ -23,11 +18,6 @@ public class UserController {
 	@Autowired
 	public UserController(UserService userService) {
 		this.userService = userService;
-	}
-
-	@GetMapping("/")
-	public String welcome() {
-		return "home";
 	}
 
 	@GetMapping("/user")
@@ -52,7 +42,7 @@ public class UserController {
 	@PostMapping()
 	public String create(@ModelAttribute("user") User user) {
 		userService.saveUser(user);
-		return "redirect:/";
+		return "redirect:/admin";
 	}
 
 	@GetMapping("/{id}/update")
@@ -62,7 +52,7 @@ public class UserController {
 	}
 
 	@PatchMapping("/{id}")
-	public String updateUser(@ModelAttribute("user") User user, @PathVariable("id") Long id) {
+	public String updateUser(@PathVariable("id") Long id, User user) {
 		userService.updateUser(id, user);
 		return "redirect:/admin";
 	}
@@ -72,10 +62,4 @@ public class UserController {
 		userService.deleteUser(id);
 		return "redirect:/admin";
 	}
-
-//    @RequestMapping(value = "login", method = RequestMethod.GET)
-//    public String loginPage() {
-//        return "login";
-//    }
-
 }

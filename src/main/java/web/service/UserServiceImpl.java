@@ -64,8 +64,8 @@ public class UserServiceImpl implements UserService {
     public void updateUser(Long id, User user) {
         User userToBeUpdate = userDao.getUser(id);
 
-        userToBeUpdate.setName(user.getUsername());
-        userToBeUpdate.setPassword(user.getPassword());
+        userToBeUpdate.setUsername(user.getUsername());
+        userToBeUpdate.setPassword(passwordEncoder.encode(user.getPassword()));
     }
 
     @Override

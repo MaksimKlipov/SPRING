@@ -11,7 +11,7 @@
     <table>
 
         <tr>
-            <th>Name</th>
+            <th align="left">Name</th>
             <th>Password</th>
         </tr>
         <br>
@@ -21,6 +21,10 @@
         </tr>
 
     </table>
+    <br/>
+    <form th:action="@{/logout}" method="post">
+        <button type="submit">Sign Out</button>
+    </form>
 
 </div>
 

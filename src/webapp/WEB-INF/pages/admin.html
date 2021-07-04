@@ -12,7 +12,7 @@
     <br>
     <table>
         <tr>
-            <th>Name</th>
+            <th align="left">Name</th>
             <th>Password</th>
         </tr>
 
@@ -44,6 +44,10 @@
 
     <form th:action="@{/new}">
         <input type="submit" value="Create new user"/>
+    </form>
+    <br/>
+    <form th:action="@{/logout}" method="post">
+        <button type="submit">Sign Out</button>
     </form>
 
 </div>

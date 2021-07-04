@@ -17,7 +17,7 @@ public class User implements UserDetails {
     private Long id;
 
     @Column(name = "name", unique = true)
-    private String name; // уникальное значение
+    private String username; // уникальное значение
 
     @Column(name = "password")
     private String password;
@@ -36,8 +36,8 @@ public class User implements UserDetails {
         this.id = id;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setUsername(String name) {
+        this.username = name;
     }
 
     public void setPassword(String password) {
@@ -64,7 +64,7 @@ public class User implements UserDetails {
 
     @Override
     public String getUsername() {
-        return name;
+        return username;
     }
 
     @Override

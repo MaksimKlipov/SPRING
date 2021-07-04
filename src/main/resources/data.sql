@@ -1,6 +1,6 @@
 
 INSERT INTO users
-VALUES (1, 'admin', 'admin');
+VALUES (1, 'admin', '$2a$10$jvU71uE2F.jth5atezEWLeXURSTfpzqxXepwloUavC1yQvkV7EA0W');
 
 INSERT INTO roles
 VALUES (1, 'ROLE_USER');
