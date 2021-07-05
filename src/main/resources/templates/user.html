@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Update user</title>
+</head>
+<body>
+
+<div align="center">
+
+    <table>
+
+        <tr>
+            <th align="left">Name</th>
+            <th>Password</th>
+        </tr>
+        <br>
+        <tr>
+            <td th:text="${user.getUsername()}">username</td>
+            <td th:text="${user.getPassword()}">password</td>
+        </tr>
+
+    </table>
+    <br/>
+    <form th:action="@{/logout}" method="post">
+        <button type="submit">Sign Out</button>
+    </form>
+
+</div>
+
+</body>
+</html>
