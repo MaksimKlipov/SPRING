@@ -7,8 +7,6 @@ import javax.persistence.*;
 import java.util.Collection;
 import java.util.Set;
 
-// Для того, чтобы в дальнейшим использовать класс User в Spring Security, он должен реализовывать интерфейс UserDetails.
-// UserDetails можно представить, как адаптер между БД пользователей и тем что требуется Spring Security внутри SecurityContextHolder
 @Entity
 @Table(name = "users")
 public class User implements UserDetails {
@@ -17,7 +15,7 @@ public class User implements UserDetails {
     private Long id;
 
     @Column(name = "username", unique = true)
-    private String username; // уникальное значение
+    private String username;
 
     @Column(name = "password")
     private String password;

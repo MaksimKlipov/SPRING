@@ -5,8 +5,6 @@ import org.springframework.security.core.GrantedAuthority;
 import javax.persistence.*;
 import java.util.Set;
 
-// Этот класс реализует интерфейс GrantedAuthority, в котором необходимо переопределить только один метод getAuthority() (возвращает имя роли).
-// Имя роли должно соответствовать шаблону: «ROLE_ИМЯ», например, ROLE_USER.
 @Entity
 @Table(name = "roles")
 public class Role implements GrantedAuthority {
@@ -28,7 +26,6 @@ public class Role implements GrantedAuthority {
     }
 
 
-
     public Long getId() {
         return id;
     }
@@ -40,7 +37,6 @@ public class Role implements GrantedAuthority {
     public String getRole() {
         return role;
     }
-
 
 
     @Override
