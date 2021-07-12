@@ -3,54 +3,214 @@
 <head>
     <meta charset="UTF-8">
     <title>All users</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
 </head>
+
 <body>
-
-<div align="center">
-
-    <h2>All Users</h2>
-    <br>
-    <table>
-        <tr>
-            <th align="left">Name</th>
-            <th>Password</th>
-        </tr>
-
-
-        <div th:each="user : ${users}">
-
-
-            <tr>
-                <td th:text="${user.getUsername()}">username</td>
-                <td th:text="${user.getPassword()}">password</td>
-                <td>
-                    <form th:action="@{/{id}/update(id=${user.getId()})}">
-                        <input type="submit" value="Update"/>
-                    </form>
-                </td>
-                <td>
-                    <form th:method="DELETE" th:action="@{/{id}(id=${user.getId()})}">
-                        <input type="submit" value="Delete"/>
-                    </form>
-                </td>
-
-            </tr>
-
+<!--top-->
+<div class="container-fluid">
+    <div class="row bg-dark text-light">
+        <div class="col-md-4">
+            <table>
+                <tr>
+                    <th><h3 th:text="${user_1.getEmail()}"></h3></th>
+                    <th><h3>with roles:</h3></th>
+                    <th><h3 th:text="${user_1.getRoles()}"></h3></th>
+                </tr>
+            </table>
         </div>
-
-    </table>
-
-    <br/>
-
-    <form th:action="@{/new}">
-        <input type="submit" value="Create new user"/>
-    </form>
-    <br/>
-    <form th:action="@{/logout}" method="post">
-        <button type="submit">Sign Out</button>
-    </form>
-
+        <div class="col-md-8" align="right">
+            <form th:action="@{/logout}" method="post">
+                <button type="submit" class="btn btn-dark text-muted">Logout</button>
+            </form>
+        </div>
+    </div>
+    <br>
+<!--    left-->
+    <div class="row">
+        <div class="col-md-2">
+            <ul class="nav nav-pills flex-column">
+                <li class="nav-item">
+                    <a class="nav-link active" data-toggle="pill" href="#admin">Admin</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="pill" href="#user">User</a>
+                </li>
+            </ul>
+        </div>
+<!--        center-->
+        <div class="col-md-10">
+            <div class="tab-content">
+                <div id="admin" class="container tab-pane active">
+                    <h1>Admin panel</h1>
+                    <div class="container">
+                        <ul class="nav nav-tabs">
+                            <li class="nav-item">
+                                <a class="nav-link active" data-toggle="tab" href="#Table">Users table</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" data-toggle="tab" href="#newUser">New user</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="tab-content">
+                        <div id="Table" class="container tab-pane active">
+                            <div class="card">
+                                <div class="card-header">All users</div>
+                                <div class="card-body">
+                                    <table class="table table-hover">
+                                        <thead>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>First Name</th>
+                                            <th>Last Name</th>
+                                            <th>Age</th>
+                                            <th>Email</th>
+                                            <th>Role</th>
+                                            <th>Edit</th>
+                                            <th>Delete</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody class="table table-striped">
+                                        <tr th:each="user : ${users}">
+                                            <td th:text="${user.getId()}"></td>
+                                            <td th:text="${user.getUsername()}"></td>
+                                            <td th:text="${user.getLastname()}"></td>
+                                            <td th:text="${user.getAge()}"></td>
+                                            <td th:text="${user.getEmail()}"></td>
+                                            <td th:text="${user.getRoles()}"></td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="newUser" class="container tab-pane fade">
+                            <div class="card">
+                                <div class="card-header">New user</div>
+                                <div class="card-body">
+                                    <form th:method="POST" th:action="@{/}">
+                                        <div class="form-group" align="center">
+                                            <label for="fn"><h6>First name</h6></label><br>
+                                            <input type="text"  id="fn" placeholder="Enter first name" name="username">
+                                        </div>
+                                        <div class="form-group" align="center">
+                                            <label for="ln"><h6>Last name</h6></label><br>
+                                            <input type="text"  id="ln" placeholder="Enter last name" name="lastname">
+                                        </div>
+                                        <div class="form-group" align="center">
+                                            <label for="age"><h6>Age</h6></label><br>
+                                            <input type="text" id="age" placeholder="Enter age" name="age">
+                                        </div>
+                                        <div class="form-group" align="center">
+                                            <label for="email"><h6>Email</h6></label><br>
+                                            <input type="email" id="email" placeholder="Enter email" name="email">
+                                        </div>
+                                        <div class="form-group" align="center">
+                                            <label for="pwd"><h6>Password</h6></label><br>
+                                            <input type="password" id="pwd" placeholder="Enter password" name="password">
+                                        </div>
+                                        <div align="center">
+                                            <button type="submit" class="btn btn-success">Add new user</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="user" class="container tab-pane fade">
+                    <h1>User information-page</h1>
+                    <div class="card">
+                        <div class="card-header">About user</div>
+                        <div class="card-body">
+                            <table class="table table-hover">
+                                <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>First Name</th>
+                                    <th>Last Name</th>
+                                    <th>Age</th>
+                                    <th>Email</th>
+                                    <th>Role</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td th:text="${user_1.getId()}"></td>
+                                    <td th:text="${user_1.getUsername()}"></td>
+                                    <td th:text="${user_1.getLastname()}"></td>
+                                    <td th:text="${user_1.getAge()}"></td>
+                                    <td th:text="${user_1.getEmail()}"></td>
+                                    <td th:text="${user_1.getRoles()}"></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+
+<!--<nav class="navbar navbar-default">-->
+<!--    <div class="container-fluid">-->
+<!--        <div class="navbar-header">-->
+<!--            <h3 th:text="${user_1.getEmail()}"></h3>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</nav>-->
+
+
+<!--<div align="center">-->
+
+<!--    <h2>All Users</h2>-->
+<!--    <br>-->
+<!--    <table>-->
+<!--        <tr>-->
+<!--            <th align="left">Name</th>-->
+<!--            <th>Password</th>-->
+<!--        </tr>-->
+
+
+<!--        <div th:each="user : ${users}">-->
+
+
+<!--            <tr>-->
+<!--                <td th:text="${user.getUsername()}">username</td>-->
+<!--                <td th:text="${user.getPassword()}">password</td>-->
+<!--                <td>-->
+<!--                    <form th:action="@{/{id}/update(id=${user.getId()})}">-->
+<!--                        <input type="submit" value="Update"/>-->
+<!--                    </form>-->
+<!--                </td>-->
+<!--                <td>-->
+<!--                    <form th:method="DELETE" th:action="@{/{id}(id=${user.getId()})}">-->
+<!--                        <input type="submit" value="Delete"/>-->
+<!--                    </form>-->
+<!--                </td>-->
+
+<!--            </tr>-->
+
+<!--        </div>-->
+
+<!--    </table>-->
+
+<!--    <br/>-->
+
+<!--    <form th:action="@{/new}">-->
+<!--        <input type="submit" value="Create new user"/>-->
+<!--    </form>-->
+<!--    <br/>-->
+<!--    <form th:action="@{/logout}" method="post">-->
+<!--        <button type="submit">Sign Out</button>-->
+<!--    </form>-->
+
+<!--</div>-->
 
 </body>
 </html>

@@ -28,7 +28,9 @@ public class UserController {
 	}
 
 	@GetMapping("/admin")
-	public String adminPage(Model model) {
+	public String adminPage(Model model, Authentication authentication) {
+		UserDetails realUser = (UserDetails)authentication.getPrincipal();
+		model.addAttribute("user_1", userService.findByUsername(realUser.getUsername()));
 		model.addAttribute("users", userService.getAllUsers());
 		return "admin";
 	}

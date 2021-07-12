@@ -4,8 +4,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
-import java.util.Collection;
-import java.util.Set;
+import java.util.*;
 
 @Entity
 @Table(name = "users")
@@ -17,8 +16,17 @@ public class User implements UserDetails {
     @Column(name = "username", unique = true)
     private String username;
 
+    @Column(name = "lastname")
+    private String lastname;
+
     @Column(name = "password")
     private String password;
+
+    @Column(name = "age")
+    private int age;
+
+    @Column(name = "email")
+    private String email;
 
     @ManyToMany(fetch = FetchType.EAGER)
     private Set<Role> roles;
@@ -42,12 +50,44 @@ public class User implements UserDetails {
         this.password = password;
     }
 
-    public Set<Role> getRoles() {
-        return roles;
+    public String getRoles() {
+        StringBuilder string = new StringBuilder();
+        for(Role role : roles) {
+            if(role.getAuthority().equals("ROLE_ADMIN")) {
+                string.append("ADMIN" + " ");
+            } else {
+                string.append("USER" + " ");;
+            }
+        }
+        return string.toString();
     }
 
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
+    }
+
+    public String getLastname() {
+        return lastname;
+    }
+
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     @Override
