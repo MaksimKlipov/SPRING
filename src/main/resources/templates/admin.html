@@ -96,23 +96,30 @@
                                     <form th:method="POST" th:action="@{/}">
                                         <div class="form-group" align="center">
                                             <label for="fn"><h6>First name</h6></label><br>
-                                            <input type="text"  id="fn" placeholder="Enter first name" name="username">
+                                            <input required type="text"  id="fn" placeholder="Enter first name" name="username">
                                         </div>
                                         <div class="form-group" align="center">
                                             <label for="ln"><h6>Last name</h6></label><br>
-                                            <input type="text"  id="ln" placeholder="Enter last name" name="lastname">
+                                            <input required type="text"  id="ln" placeholder="Enter last name" name="lastname">
                                         </div>
                                         <div class="form-group" align="center">
                                             <label for="age"><h6>Age</h6></label><br>
-                                            <input type="text" id="age" placeholder="Enter age" name="age">
+                                            <input required type="number" id="age" placeholder="Enter age" name="age">
                                         </div>
                                         <div class="form-group" align="center">
                                             <label for="email"><h6>Email</h6></label><br>
-                                            <input type="email" id="email" placeholder="Enter email" name="email">
+                                            <input required type="email" id="email" placeholder="Enter email" name="email">
                                         </div>
                                         <div class="form-group" align="center">
                                             <label for="pwd"><h6>Password</h6></label><br>
-                                            <input type="password" id="pwd" placeholder="Enter password" name="password">
+                                            <input required type="password" id="pwd" placeholder="Enter password" name="password">
+                                        </div>
+                                        <div class="form-group" align="center">
+                                            <label for="sel2"><h6>Role</h6></label><br>
+                                            <select required type="text" multiple id="sel2" name="roles">
+                                                <option value="2">ADMIN</option>
+                                                <option value="1">USER</option>
+                                            </select>
                                         </div>
                                         <div align="center">
                                             <button type="submit" class="btn btn-success">Add new user</button>
