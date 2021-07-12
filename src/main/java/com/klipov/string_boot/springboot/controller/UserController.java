@@ -22,15 +22,15 @@ public class UserController {
 
 	@GetMapping("/user")
 	public String autUserPage(Model model, Authentication authentication) {
-		UserDetails realUser = (UserDetails)authentication.getPrincipal();
-		model.addAttribute("user", userService.findByUsername(realUser.getUsername()));
+		User realUser = (User)authentication.getPrincipal();
+		model.addAttribute("user", userService.findByEmail(realUser.getEmail()));
 		return "user";
 	}
 
 	@GetMapping("/admin")
 	public String adminPage(Model model, Authentication authentication) {
-		UserDetails realUser = (UserDetails)authentication.getPrincipal();
-		model.addAttribute("user_1", userService.findByUsername(realUser.getUsername()));
+		User realUser = (User)authentication.getPrincipal();
+		model.addAttribute("user_1", userService.findByEmail(realUser.getEmail()));
 		model.addAttribute("users", userService.getAllUsers());
 		return "admin";
 	}

@@ -8,4 +8,4 @@ INSERT INTO roles
 VALUES (2, 'ROLE_ADMIN');
 
 INSERT INTO users_roles
-VALUES (1, 1);
+VALUES (1, 2);
