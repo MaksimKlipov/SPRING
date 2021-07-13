@@ -2,15 +2,13 @@ package com.klipov.string_boot.springboot.service;
 
 import com.klipov.string_boot.springboot.repository.RoleRepository;
 import com.klipov.string_boot.springboot.repository.UserRepository;
-import com.klipov.string_boot.springboot.model.Role;
 import com.klipov.string_boot.springboot.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
+import java.util.Optional;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -28,7 +26,8 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User getUser(Long id) {
-        return userRepository.getById(id);
+        Optional<User> user = userRepository.findById(id);
+        return user.get();
     }
 
     @Override
@@ -54,13 +53,19 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void updateUser(Long id, User user) {
-        User userToBeUpdate = userRepository.getById(id);
+        Optional<User> userToBeUpdate = userRepository.findById(id);
+        User user1 = userToBeUpdate.get();
 
-        userToBeUpdate.setUsername(user.getUsername());
-        if (!userToBeUpdate.getPassword().equals(user.getPassword())) {
-            userToBeUpdate.setPassword(passwordEncoder.encode(user.getPassword()));
+        user1.setUsername(user.getUsername());
+        user1.setLastname(user.getLastname());
+        user1.setAge(user.getAge());
+        user1.setEmail(user.getEmail());
+        user1.setRoles(user.getRole());
+        if (!user1.getPassword().equals(user.getPassword())) {
+            user1.setPassword(passwordEncoder.encode(user.getPassword()));
         }
-        userRepository.save(userToBeUpdate);
+
+        userRepository.save(user1);
     }
 
     @Override

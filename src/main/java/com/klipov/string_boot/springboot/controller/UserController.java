@@ -35,21 +35,10 @@ public class UserController {
 		return "admin";
 	}
 
-	@GetMapping("/new")
-	public String saveUser(@ModelAttribute("user") User user) {
-		return "new";
-	}
-
 	@PostMapping()
 	public String create(@ModelAttribute("user") User user) {
 		userService.saveUser(user);
 		return "redirect:/admin";
-	}
-
-	@GetMapping("/{id}/update")
-	public String updateUser(@PathVariable("id") Long id, Model model) {
-		model.addAttribute("user", userService.getUser(id));
-		return "update";
 	}
 
 	@PatchMapping("/{id}")
