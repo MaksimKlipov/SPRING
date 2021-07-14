@@ -32,6 +32,7 @@ public class UserController {
 		User realUser = (User)authentication.getPrincipal();
 		model.addAttribute("user_1", userService.findByEmail(realUser.getEmail()));
 		model.addAttribute("users", userService.getAllUsers());
+		model.addAttribute("roles", userService.findAllRoles());
 		return "admin";
 	}
 

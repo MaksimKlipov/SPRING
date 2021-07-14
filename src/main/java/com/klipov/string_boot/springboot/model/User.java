@@ -53,11 +53,12 @@ public class User implements UserDetails {
     public String getRoles() {
         StringBuilder string = new StringBuilder();
         for(Role role : roles) {
-            if(role.getAuthority().equals("ROLE_ADMIN")) {
-                string.append("ADMIN" + " ");
-            } else {
-                string.append("USER" + " ");;
-            }
+            string.append(role.getNameRole().substring(5)).append(" ");
+//            if(role.getAuthority().equals("ROLE_ADMIN")) {
+//                string.append("ADMIN" + " ");
+//            } else {
+//                string.append("USER" + " ");;
+//            }
         }
         return string.toString();
     }

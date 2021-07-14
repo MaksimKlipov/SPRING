@@ -1,5 +1,6 @@
 package com.klipov.string_boot.springboot.service;
 
+import com.klipov.string_boot.springboot.model.Role;
 import com.klipov.string_boot.springboot.repository.RoleRepository;
 import com.klipov.string_boot.springboot.repository.UserRepository;
 import com.klipov.string_boot.springboot.model.User;
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -71,5 +73,10 @@ public class UserServiceImpl implements UserService {
     @Override
     public void deleteUser(Long id) {
         userRepository.deleteById(id);
+    }
+
+    @Override
+    public List<Role> findAllRoles() {
+        return roleRepository.findAll();
     }
 }
