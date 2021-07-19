@@ -13,7 +13,7 @@ public interface UserService {
     User findByEmail(String email);
     User findByUsername(String username);
     void saveUser(User user);
-    List<User> getAllUsers();
+    List<User> findAllUsers();
     void updateUser(Long id, User user);
     void deleteUser(Long id);
     List<Role> findAllRoles();

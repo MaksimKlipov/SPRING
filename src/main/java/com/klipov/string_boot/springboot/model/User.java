@@ -28,7 +28,7 @@ public class User implements UserDetails {
     @Column(name = "email", unique = true)
     private String email;
 
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany
     private Set<Role> roles;
 
     public User() {
@@ -54,11 +54,6 @@ public class User implements UserDetails {
         StringBuilder string = new StringBuilder();
         for(Role role : roles) {
             string.append(role.getNameRole().substring(5)).append(" ");
-//            if(role.getAuthority().equals("ROLE_ADMIN")) {
-//                string.append("ADMIN" + " ");
-//            } else {
-//                string.append("USER" + " ");;
-//            }
         }
         return string.toString();
     }
