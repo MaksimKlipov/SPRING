@@ -5,7 +5,7 @@ VALUES (1, 25, 'klipov@mail.ru', 'Klipov', '$2a$10$jvU71uE2F.jth5atezEWLeXURSTfp
 INSERT INTO roles
 VALUES (1, 'ROLE_USER');
 INSERT INTO roles
-VALUES (2, 'ROLE_ADMIN');
+VALUES (3, 'ROLE_HR');
 
 INSERT INTO users_roles
 VALUES (1, 2);
