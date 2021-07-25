@@ -11,15 +11,9 @@
 <body>
     <div class="container-fluid">
         <div class="row bg-dark text-light">
-            <div class="col-md-4">
-                <table>
-                    <tr>
-                        <th><h3 th:text="${user.getEmail()}"></h3></th>
-                        <th><h3>with roles:</h3></th>
-                        <th><h3 th:text="${user.getRoles()}"></h3></th>
-                    </tr>
-                </table>
-            </div>
+
+            <div class="col-md-4" id="top_panel"></div>
+
             <div class="col-md-8" align="right">
                 <form th:action="@{/logout}" method="post">
                     <button type="submit" class="btn btn-dark text-muted">Logout</button>
@@ -53,16 +47,9 @@
                                         <th>Role</th>
                                     </tr>
                                     </thead>
-                                    <tbody>
-                                    <tr>
-                                        <td th:text="${user.getId()}"></td>
-                                        <td th:text="${user.getUsername()}"></td>
-                                        <td th:text="${user.getLastname()}"></td>
-                                        <td th:text="${user.getAge()}"></td>
-                                        <td th:text="${user.getEmail()}"></td>
-                                        <td th:text="${user.getRoles()}"></td>
-                                    </tr>
-                                    </tbody>
+
+                                    <tbody id="user_panel"></tbody>
+
                                 </table>
                             </div>
                         </div>
@@ -71,5 +58,10 @@
             </div>
         </div>
     </div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="/js/top_panel.js"></script>
+<script src="/js/user_panel.js"></script>
+
 </body>
 </html>
