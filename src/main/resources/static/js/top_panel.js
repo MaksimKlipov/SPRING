@@ -5,10 +5,10 @@ async function topPanel() {
 
     $("#top_panel").append(
         "<table>"+
-        "<tr>"+
+        "<tr id='"+data.email+"'>"+
         "<th>"+"<h3>"+data.email+" </h3>"+"<th>"+
         "<th>"+"<h3>"+"with roles:"+"</h3>"+"<th>"+
-        "<th>"+"<h3>"+data.roles+"</h3>"+"<th>"+
+        "<th>"+"<h3>"+data.roles+"</h3id>"+"<th>"+
         "</tr>"+
         "</table>"
     )

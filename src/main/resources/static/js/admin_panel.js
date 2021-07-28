@@ -6,7 +6,7 @@ async function adminPanel() {
 
     data.forEach(function (dt){
         $("#admin_panel").append(
-            "<tr id='qwer'>"+
+            "<tr id='"+dt.id+"'>"+
             "<td>"+dt.id+"</td>"+
             "<td>"+dt.username+"</td>"+
             "<td>"+dt.lastname+"</td>"+

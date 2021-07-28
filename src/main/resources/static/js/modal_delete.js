@@ -25,7 +25,7 @@ $('#formDelete').submit(function (event) {
     }).then(res => console.log(res))
 
     setTimeout(function () {
-        $('#admin_panel').html(adminPanel())
+        $('#' +idUser).remove()
     }, 100)
 
     $('#deleteModal').modal('hide')

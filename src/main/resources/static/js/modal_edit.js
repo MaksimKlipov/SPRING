@@ -18,37 +18,56 @@ async function editModal(id) {
 
 }
 
-$('#formEdit').submit(function (event) {
-    event.preventDefault()
-    let array = []
-    let val = $('#sel1').val()
-    for (let key in val) {
-        array.push({"id": val[key]})
-    }
-    let data = {
-        "username": this.username.value,
-        "lastname": this.lastname.value,
-        "age": this.age.value,
-        "email": this.email.value,
-        "password": this.password.value,
-        "roles": array
-    }
-    let idUser = this.id.value
-
-    fetch('/api/update/' + idUser, {
-        method: 'put',
-        body: JSON.stringify(data),
-        headers: {
-            'Content-Type': 'application/json;charset=utf-8'
+$(document).ready(function () {
+    $('#formEdit').submit(function (event) {
+        event.preventDefault()
+        let array = []
+        let val = $('#sel1').val()
+        for (let key in val) {
+            array.push({"id": val[key]})
         }
-    }).then(res => console.log(res))
+        let data = {
+            "username": this.username.value,
+            "lastname": this.lastname.value,
+            "age": this.age.value,
+            "email": this.email.value,
+            "password": this.password.value,
+            "roles": array
+        }
+        let idUser = this.id.value
 
-    setTimeout(function () {
-        $('#admin_panel').html(adminPanel()),
-            $('#top_panel').html(topPanel()),
-            $('#user_panel').html(userPanel())
-    }, 100)
+        fetch('/api/update/' + idUser, {
+            method: 'put',
+            body: JSON.stringify(data),
+            headers: {
+                'Content-Type': 'application/json;charset=utf-8'
+            }
+        }).then(res => console.log(res))
 
-    $('#editModal').modal('hide')
+        fetch('/api/users/' + idUser)
+
+
+        setTimeout(function () {
+            fetch('/api/users/' + idUser)
+                .then(res => res.json())
+                .then(res => $('#'+res.id).html(
+                    "<td>" + res.id + "</td>" +
+                    "<td>" + res.username + "</td>" +
+                    "<td>" + res.lastname + "</td>" +
+                    "<td>" + res.age + "</td>" +
+                    "<td>" + res.email + "</td>" +
+                    "<td>" + res.roles + "</td>" +
+                    "<td>" +
+                    "<button type='button' class='btn btn-info' onclick='editModal(" + res.id + ")' data-toggle='modal' data-target='#editModal'>Edit</button>" +
+                    "</td>" +
+                    "<td>" +
+                    "<button type='button' class='btn btn-danger' onclick='deleteModal(" + res.id + ")' data-toggle='modal' data-target='#deleteModal'>Delete</button>" +
+                    "</td>"
+                ))
+                $('#user_panel').html(userPanel())
+        }, 100)
+
+        $('#editModal').modal('hide')
+    })
 })
 
